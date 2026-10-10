@@ -1,0 +1,12 @@
+*.egg-info
+*.pyc
+.*.swp
+.cache
+.idea/
+.pytest_cache
+.python-version
+.tox
+.venv
+build
+dist
+_build

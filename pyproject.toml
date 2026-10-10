@@ -1,0 +1,77 @@
+[project]
+name = "collective-sphinxextexternalpackageversion"
+version = "2.1.0"
+description = "Sphinx extension to show the version of an external package through a special syntax in the documentation"
+keywords = [
+  "Sphinx",
+  "extension",
+  "documentation",
+  "collective",
+  "syntax",
+  "replacement",
+  "regex",
+]
+readme = "README.rst"
+license = "MIT"
+license-files = ["LICENSE"]
+maintainers = [
+  { name = "Silviu Bogan", email = "silviubogan@gmail.com" },
+]
+authors = [
+  { name = "Silviu Bogan", email = "silviubogan@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Framework :: Sphinx :: Domain",
+    "Framework :: Sphinx :: Extension",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Documentation",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "sphinx>=8.1.3",
+]
+
+
+[project.urls]
+Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+Documentation = "https://collective-sphinxextexternalpackageversion.readthedocs.io/en/stable/"
+Download ="https://pypi.org/project/collective-sphinxextexternalpackageversion/"
+Funding = "https://github.com/sponsors/silviubogan"
+Homepage = "https://github.com/collective/sphinx-ext-external-package-version"
+Issues = "https://github.com/collective/sphinx-ext-external-package-version/issues"
+# TODO: Releasenotes = ""
+Repository = "https://github.com/collective/sphinx-ext-external-package-version"
+
+
+[dependency-groups]
+dev = [
+    "packaging>=26.3",
+    "pytest>=9.1.1",
+    "sphinx-autobuild>=2024.10.3",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+
+[build-system]
+requires = ["uv_build >= 0.12.22, < 0.13.0"]
+build-backend = "uv_build"
+
+
+[tool.uv]
+python-preference = "managed"
+
+
+[tool.uv.build-backend]
+namespace = true
+module-name = "collective"
