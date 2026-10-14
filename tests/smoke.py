@@ -41,6 +41,7 @@ def main():
             F {{ version nvm-sh/nvm }} G
             H
             ```
+
             .. include:: included.rst
             """
         )
@@ -77,7 +78,11 @@ def main():
     )
     assert result.returncode == 0, result.stdout + result.stderr
     page = (out / "index.html").read_text(encoding="utf-8")
-    assert page.count(latest_release_for_github_repo("nvm-sh/nvm")) == 3
+    v = latest_release_for_github_repo("nvm-sh/nvm")
+    assert page.count(v) == 3, (
+        f"Expected 3 occurrences of {v} in the output, found {page.count(v)}"
+    )
+    tmp.cleanup()
     return result
 
 
