@@ -1,4 +1,4 @@
-include README
+include README.rst
 include LICENSE
-include CHANGES.*
+include CHANGELOG.rst
 recursive-include collective *.pot *.po *.mo

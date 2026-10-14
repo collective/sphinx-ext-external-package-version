@@ -93,7 +93,7 @@ To run tests for a specific Python version, use the following command, replacing
 tox r -e py315
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > `py315` is the only tox environment that also runs the link checker.
 
 

@@ -18,7 +18,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 #TODO: VALEFILES       := $(shell find $(DOCS_DIR) -type f -name "*.md" -print)
 #TODO: VALEOPTS        ?=
-PYTHONVERSION   = >=3.10,<3.15
+PYTHONVERSION   = >=3.10,<=3.15
 VERSION := $(shell uv version --short)
 
 # Add the following 'help' target to your Makefile
@@ -194,7 +194,7 @@ linkcheck: dev  ## Check links
 
 .PHONY: linkcheckbroken
 linkcheckbroken: dev  ## Run linkcheck and show only broken links
-	cd $(DOCS_DIR) && $(SPHINXBUILD) -b linkcheck $(ALLSPHINXOPTS) $(BUILDDIR)/linkcheck | GREP_COLORS='0;31' grep -wi "broken\|redirect" --color=always | GREP_COLORS='0;31' grep -vi "https://github.com/sphinx-contrib/httpdomain/issues/" --color=always && if test $$? = 0; then exit 1; fi || test $$? = 1
+	cd $(DOCS_DIR) && $(SPHINXBUILD) -b linkcheck $(ALLSPHINXOPTS) $(BUILDDIR)/linkcheck | GREP_COLORS='0;31' grep -wi "broken\|redirect" --color=always | GREP_COLORS='0;31' grep -vi "https://github.com/collective/sphinx-ext-external-package-version/issues/" --color=always && if test $$? = 0; then exit 1; fi || test $$? = 1
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in $(BUILDDIR)/linkcheck/ ."
