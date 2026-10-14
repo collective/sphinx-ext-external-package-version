@@ -3,9 +3,10 @@
 # The version is found only at build time. For a given repo used in the docs,
 # the latest version is found only once because we cache the version name.
 
+import json
 import re
-
-import requests
+import urllib
+import urllib.request as req
 
 gh_version_cache = {}
 
@@ -37,12 +38,18 @@ def latest_gh_include_replace(app, relative_path, parent_docname, content):
 def latest_release_for_github_repo(repo):
     latest_release_url = "https://api.github.com/repos/" + repo + "/releases/latest"
     try:
-        response = requests.get(latest_release_url)
-        response.raise_for_status()
-        commit = response.json()
-        return commit["name"]
-    except requests.RequestException as e:
-        print(f"GET request error: {e.response.status_code} - {e.response.reason}")
+        with req.urlopen(latest_release_url) as response:
+            commit = json.load(response)
+            return commit["name"]
+    except urllib.error.HTTPError as e:
+        # Handles HTTP errors (e.g., 404, 500)
+        print(f"HTTP Error: {e.code} - {e.reason}")
+    except urllib.error.URLError as e:
+        # Handles URL errors (e.g., DNS failure, refused connection)
+        print(f"URL Error: {e.reason}")
+    except TimeoutError:
+        # Handles timeout specifically
+        print("Request timed out.")
 
 
 def setup(app):

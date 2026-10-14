@@ -1,24 +1,31 @@
 """Minimal Sphinx 8.1.3 compatibility smoke test."""
 
+import json
 import subprocess
 import sys
 import tempfile
 import textwrap
+import urllib
+import urllib.request as req
 from pathlib import Path
-
-import requests
 
 
 # This function is a copy of the one in src/collective/sphinxextexternalpackageversion/__init__.py
 def latest_release_for_github_repo(repo):
     latest_release_url = "https://api.github.com/repos/" + repo + "/releases/latest"
     try:
-        response = requests.get(latest_release_url)
-        response.raise_for_status()
-        commit = response.json()
-        return commit["name"]
-    except requests.RequestException as e:
-        print(f"GET request error: {e.response.status_code} - {e.response.reason}")
+        with req.urlopen(latest_release_url) as response:
+            commit = json.load(response)
+            return commit["name"]
+    except urllib.error.HTTPError as e:
+        # Handles HTTP errors (e.g., 404, 500)
+        print(f"HTTP Error: {e.code} - {e.reason}")
+    except urllib.error.URLError as e:
+        # Handles URL errors (e.g., DNS failure, refused connection)
+        print(f"URL Error: {e.reason}")
+    except TimeoutError:
+        # Handles timeout specifically
+        print("Request timed out.")
 
 
 def main():
