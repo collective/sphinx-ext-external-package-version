@@ -27,7 +27,7 @@ def latest_release_for_github_repo(repo):
         print("Request timed out.")
 
 
-class OneTestCase(unittest.TestCase):
+class TestSphinxExtension(unittest.TestCase):
     def build(self):
         self.tmp = tempfile.TemporaryDirectory()
         src = pathlib.Path(self.tmp.name, "src")
@@ -85,7 +85,8 @@ class OneTestCase(unittest.TestCase):
 
     def test_one(self):
         self.build()
-        page = (self.tmp / "html").read_text(encoding="utf-8")
+        page = (self.tmp / "html" / "index.html").read_text(encoding="utf-8")
+        self.tearDown()
         # TODO more tests, using the regex used in the extension
         self.assertTrue(
             page.count(latest_release_for_github_repo("nvm-sh/nvm")) == 3,

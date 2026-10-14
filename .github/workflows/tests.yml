@@ -42,5 +42,8 @@ jobs:
     - name: Install tox
       run: uv tool install tox --with tox-uv
 
+    - name: Show current working directory
+      run: pwd
+
     - name: Tests
       run: tox r -e ${{ matrix.config[1] }}
