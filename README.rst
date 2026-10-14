@@ -28,19 +28,19 @@ This Collective Sphinx extension, ``collective.sphinxextexternalpackageversion``
 
 You can find the documentation at the following URL: https://collective-sphinxextexternalpackageversion.readthedocs.io/en/stable/ (currently broken).
 
-To get the latest stable version of a GitHub repository that is in a release on GitHub, place `{{ version x/y }}` in your documentation, where `x/y` is the title of the GitHub repository, `x` is the owner, `y` is the actual repository name. For example:
+To get the latest stable version of a GitHub repository that is in a release on GitHub, place ``{{ version x/y }}`` in your documentation, where ``x/y`` is the title of the GitHub repository, ``x`` is the owner, ``y`` is the actual repository name. For example:
 
 Here is a code block::
 
   The latest version of nvm is {{ version nvm-sh/nvm }}.
 
-will output as of the time of writing this documentation::
+This code block will output, as of the time of writing this documentation::
 
   The latest version of nvm is 0.40.8.
 
 Note that this works through a RegEx and will work in code blocks and included files too. This works only for public repos that actually have a release.
 
-Currently there is no way to escape the syntax to show in your docs the literal string `{{ version x/y }}`.
+Currently there is no way to escape the syntax to show in your docs the literal string ``{{ version x/y }}``.
 
 How to use
 ==========
@@ -51,7 +51,7 @@ After installing the package with 'uv' link the extension to your Sphinx project
 
 *TODO*
 
-Then, in your `conf.py` file, add the following string to the `extensions` list::
+Then, in your ``conf.py`` file, add the following string to the ``extensions`` list::
 
   "collective.sphinxextexternalpackageversion"
 
