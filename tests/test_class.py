@@ -1,11 +1,10 @@
-import json
+import os
 import pathlib
 import tempfile
 import textwrap
 import unittest
-import urllib
 
-import req
+import requests
 from sphinx.application import Sphinx
 
 
@@ -13,18 +12,12 @@ from sphinx.application import Sphinx
 def latest_release_for_github_repo(repo):
     latest_release_url = "https://api.github.com/repos/" + repo + "/releases/latest"
     try:
-        with req.urlopen(latest_release_url) as response:
-            commit = json.load(response)
-            return commit["name"]
-    except urllib.error.HTTPError as e:
-        # Handles HTTP errors (e.g., 404, 500)
-        print(f"HTTP Error: {e.code} - {e.reason}")
-    except urllib.error.URLError as e:
-        # Handles URL errors (e.g., DNS failure, refused connection)
-        print(f"URL Error: {e.reason}")
-    except TimeoutError:
-        # Handles timeout specifically
-        print("Request timed out.")
+        response = requests.get(latest_release_url)
+        response.raise_for_status()
+        commit = response.json()
+        return commit["name"]
+    except requests.RequestException as e:
+        print(f"GET request error: {e.response.status_code} - {e.response.reason}")
 
 
 class TestSphinxExtension(unittest.TestCase):
@@ -39,31 +32,28 @@ class TestSphinxExtension(unittest.TestCase):
         (src / "index.rst").write_text(
             textwrap.dedent(
                 """
-        .. module:: collective.sphinxextexternalpackageversion
-        A
-        B {{ version nvm-sh/nvm }} C
-        D
+                A
+                B {{ version nvm-sh/nvm }} C
+                D
 
-        ```text
-        E
-        F {{ version nvm-sh/nvm }} G
-        H
-        ```
-        ```{include} included.rst
-        ```
-        """,
-                encoding="utf-8",
+                ```text
+                E
+                F {{ version nvm-sh/nvm }} G
+                H
+                ```
+                
+                .. include:: included.rst
+                """
             )
         )
 
         (src / "included.rst").write_text(
             textwrap.dedent(
                 """
-        G
-        H {{version nvm-sh/nvm}} I
-        J
-        """,
-                encoding="utf-8",
+                G
+                H {{version nvm-sh/nvm}} I
+                J
+                """
             )
         )
 
@@ -85,9 +75,20 @@ class TestSphinxExtension(unittest.TestCase):
 
     def test_one(self):
         self.build()
-        page = (self.tmp / "html" / "index.html").read_text(encoding="utf-8")
+        page = pathlib.Path(os.path.join(self.tmp.name, "out", "index.html")).read_text(
+            encoding="utf-8"
+        )
         self.tearDown()
         # TODO more tests, using the regex used in the extension
+        print(page)
+        print(page.count("0.40.8"))
+
+        # page_2 = pathlib.Path(
+        #     os.path.join(self.tmp.name, "out", "included.html") # file not found
+        # ).read_text(encoding="utf-8")
+
+        # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", page_2)
+
         self.assertTrue(
             page.count(latest_release_for_github_repo("nvm-sh/nvm")) == 3,
             "Expected 3 occurrences of the version string in the output.",
