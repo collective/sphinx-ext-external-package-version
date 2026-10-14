@@ -1,5 +1,5 @@
-``sphinxcontrib.httpdomain``
-============================
+``collective.sphinxextexternalpackageversion``
+==============================================
 
 .. image:: https://img.shields.io/pypi/v/collective-sphinxextexternalpackageversion
     :target: https://pypi.org/project/collective-sphinxextexternalpackageversion/
@@ -29,3 +29,5 @@ This Collective Sphinx extension, ``collective.sphinxextexternalpackageversion``
 You can find the documentation at the following URL:
 
 https://collective-sphinxextexternalpackageversion.readthedocs.io/en/stable/
+
+**Work in progress.**

@@ -1,6 +1,6 @@
 [project]
 name = "collective-sphinxextexternalpackageversion"
-version = "2.1.0"
+version = "1.0.0"
 description = "Sphinx extension to show the version of an external package through a special syntax in the documentation"
 keywords = [
   "Sphinx",
@@ -34,6 +34,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Topic :: Documentation",
     "Topic :: Utilities",
 ]

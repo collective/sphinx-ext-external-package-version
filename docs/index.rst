@@ -24,12 +24,12 @@ Note that this works through a RegEx and will work in code blocks and included f
 
 # How to use
 
-In your `conf.py` file, add the following line to the `extensions` list:
+In your `conf.py` file, add the following string to the `extensions` list:
 
 ```python
 "collective.sphinxextexternalpackageversion"
 ```
 
-after installing the package with 'uv':
+After installing the package with 'uv' link the extension to your Sphinx project:
 
 TODO

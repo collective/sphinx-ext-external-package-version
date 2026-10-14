@@ -1,4 +1,4 @@
-# copied from sphinxcontrib-httpdomain documentation build configuration file,
+# copied from sphinxcontrib-httpdomain documentation build configuration file and adapted,
 # created by sphinx-quickstart on Thu Jun  2 13:27:52 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -46,9 +46,10 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
+    # when there is a way to escape the syntax, use:
+    # "collective.sphinxextexternalpackageversion",
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
-    "collective.sphinxextexternalpackageversion",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

@@ -1,7 +1,13 @@
-Changelog
----------
-
 Unreleased
 ``````````
 
-FIXME
+Breaking changes
+................
+
+
+Major changes
+.............
+
+
+Minor changes
+.............

@@ -67,7 +67,7 @@ html: dev  ## Build standalone HTML files
 .PHONY: livehtml
 livehtml: dev  ## Rebuild Sphinx documentation on changes, with live-reload in the browser
 	cd "$(DOCS_DIR)" && ${SPHINXAUTOBUILD} \
-		--watch "../src/sphinxcontrib/" \
+		--watch "../src/collective/" \
 		--ignore "*.swp" \
 		--port 8050 \
 		-b html . "$(BUILDDIR)/html" $(SPHINXOPTS) $(O)
@@ -109,9 +109,9 @@ qthelp: dev  ## Build HTML files and a qthelp project
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/sphinxcontrib-httpdomain.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/collective-sphinxextexternalpackageversion.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/sphinxcontrib-httpdomain.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/collective-sphinxextexternalpackageversion.qhc"
 
 .PHONY: devhelp
 devhelp: dev  ## Build HTML files and a Devhelp project
@@ -119,8 +119,8 @@ devhelp: dev  ## Build HTML files and a Devhelp project
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/sphinxcontrib-httpdomain"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/sphinxcontrib-httpdomain"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/collective-sphinxextexternalpackageversion"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/collective-sphinxextexternalpackageversion"
 	@echo "# devhelp"
 
 .PHONY: epub
