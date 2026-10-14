@@ -87,15 +87,8 @@ class TestSphinxExtension(unittest.TestCase):
             encoding="utf-8"
         )
         self.tearDown()
+
         # TODO more tests, using the regex used in the extension
-        print(page)
-        print(page.count("0.40.8"))
-
-        # page_2 = pathlib.Path(
-        #     os.path.join(self.tmp.name, "out", "included.html") # file not found
-        # ).read_text(encoding="utf-8")
-
-        # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", page_2)
 
         self.assertTrue(
             page.count(latest_release_for_github_repo("nvm-sh/nvm")) == 3,
