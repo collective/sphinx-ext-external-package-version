@@ -29,7 +29,10 @@ def latest_release_for_github_repo(repo):
 
 
 class TestSphinxExtension(unittest.TestCase):
-    def build(self):
+    def build(self, count=3):
+        if count != 3 and count != 1:
+            raise ValueError("count must be either 3 or 1")
+
         self.tmp = tempfile.TemporaryDirectory()
         src = pathlib.Path(self.tmp.name, "src")
         src.mkdir()
@@ -37,23 +40,42 @@ class TestSphinxExtension(unittest.TestCase):
             "extensions = ['collective.sphinxextexternalpackageversion']\n"
         )
 
-        (src / "index.rst").write_text(
-            textwrap.dedent(
-                """
-                A
-                B {{ version nvm-sh/nvm }} C
-                D
+        if count == 3:
+            (src / "index.rst").write_text(
+                textwrap.dedent(
+                    """
+                    A
+                    B {{ version nvm-sh/nvm }} C
+                    D
 
-                ```text
-                E
-                F {{ version nvm-sh/nvm }} G
-                H
-                ```
-                
-                .. include:: included.rst
-                """
+                    ```text
+                    E
+                    F {{ version nvm-sh/nvm }} G
+                    H
+                    ```
+                    
+                    .. include:: included.rst
+                    """
+                )
             )
-        )
+        elif count == 1:
+            (src / "index.rst").write_text(
+                textwrap.dedent(
+                    """
+                    A
+                    B {{ verion nvm-sh/nvm }} C
+                    D
+
+                    ```text
+                    E
+                    F { version nvm-sh/nvm }} G
+                    H
+                    ```
+                    
+                    .. include:: included.rst
+                    """
+                )
+            )
 
         (src / "included.rst").write_text(
             textwrap.dedent(
@@ -87,10 +109,17 @@ class TestSphinxExtension(unittest.TestCase):
             encoding="utf-8"
         )
         self.tearDown()
-
-        # TODO more tests, using the regex used in the extension
-
         self.assertTrue(
             page.count(latest_release_for_github_repo("nvm-sh/nvm")) == 3,
-            "Expected 3 occurrences of the version string in the output.",
+            "Expected 3 occurrences of the version string in the output without syntax errors.",
+        )
+
+        self.build(count=1)
+        page = pathlib.Path(os.path.join(self.tmp.name, "out", "index.html")).read_text(
+            encoding="utf-8"
+        )
+        self.tearDown()
+        self.assertTrue(
+            page.count(latest_release_for_github_repo("nvm-sh/nvm")) == 1,
+            "Expected 1 occurrence of the version string in the output with two wrong syntaxes.",
         )
