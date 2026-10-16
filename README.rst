@@ -45,15 +45,23 @@ Currently there is no way to escape the syntax to show in your docs the literal 
 How to use
 ==========
 
-*TODO: Check if this works.*
+To install the extension, add::
 
-After installing the package with 'uv' link the extension to your Sphinx project:
+  collective-sphinxextexternalpackageversion
 
-*TODO*
-
-Then, in your ``conf.py`` file, add the following string to the ``extensions`` list::
+to your requirements.txt or requirements-docs.txt or to a similar file. Then, in your ``conf.py`` file, add the following string to the ``extensions`` list::
 
   "collective.sphinxextexternalpackageversion"
+
+to register the extension with Sphinx. Then run commands similar to::
+
+  make docs-distclean
+  make docs-livehtml
+
+or::
+
+  make clean
+  make livehtml
 
 How to contribute
 =================
