@@ -12,9 +12,9 @@ Major changes
 Minor changes
 .............
 
-- Updated README.rst
+- Updated README.rst @silviubogan
 
 v0.1.0
 ``````
 
-Initial release
+- Initial release @silviubogan
