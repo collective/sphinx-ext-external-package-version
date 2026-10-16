@@ -1,6 +1,6 @@
 [project]
 name = "collective-sphinxextexternalpackageversion"
-version = "1.0.0"
+version = "0.1.0"
 description = "Sphinx extension to show the version of an external package through a special syntax in the documentation"
 keywords = [
   "Sphinx",

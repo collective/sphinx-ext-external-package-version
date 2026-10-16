@@ -56,5 +56,5 @@ def setup(app):
     app.connect("source-read", latest_gh_replace)
     app.connect("include-read", latest_gh_include_replace)
     return {
-        "version": "1.0.0",
+        "version": "0.1.0",
     }
