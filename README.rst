@@ -60,7 +60,7 @@ to register the extension with Sphinx. Then run commands similar to::
 
 or::
 
-  make clean
+  make distclean
   make livehtml
 
 How to contribute
