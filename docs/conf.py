@@ -40,17 +40,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 # -- General configuration -----------------------------------------------------
 
-# If your documentation needs a minimal Sphinx version, state it here.
-# needs_sphinx = '1.0'
-
-# Add any Sphinx extension module names here, as strings. They can be extensions
-# coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = [
-    # when there is a way to escape the syntax, use:
-    # "collective.sphinxextexternalpackageversion",
-    "sphinx.ext.extlinks",
-    "sphinx.ext.intersphinx",
-]
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -296,19 +286,3 @@ suppress_warnings = ["image.nonlocal_uri"]
 
 # -- linkcheck builder configuration ----------------------------------
 linkcheck_ignore = []
-
-
-# -- sphinx.ext.intersphinx configuration ----------------------------------
-
-# This extension can generate automatic links to the documentation of objects
-# in other projects. Usage is simple: whenever Sphinx encounters a
-# cross-reference that has no matching target in the current documentation set,
-# it looks for targets in the documentation sets configured in
-# intersphinx_mapping. A reference like :py:class:`zipfile.ZipFile` can then
-# linkto the Python documentation for the ZipFile class, without you having to
-# specify where it is located exactly.
-#
-# https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html
-intersphinx_mapping = {
-    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
-}
