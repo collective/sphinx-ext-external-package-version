@@ -21,7 +21,7 @@ if os.environ.get("READTHEDOCS"):
 project = "collective-sphinxextexternalpackageversion"
 copyright = "2026, Silviu Bogan"
 author = "Silviu Bogan"
-release = "0.1.0"
+release = "0.2.0"
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
